@@ -4,12 +4,16 @@ cd "$GITHUB_WORKSPACE" || exit
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-npx @stoplight/spectral@6.0.0-alpha3 lint ./reference/*.yml -f text --ruleset=https://raw.githubusercontent.com/bigcommerce/api-specs/master/.spectral.yaml \
+npx @stoplight/spectral@6.0.0-alpha3 lint ./reference/*.yml -f text \
   | reviewdog \
-    -efm="%f:%l:%c: %m" \
-    -name "spectral" \
-    -reporter="${INPUT_REPORTER:-github-pr-review}" \
-    -level="${INPUT_LEVEL}" \
-    -filter-mode="${INPUT_FILTER_MODE}" \
-    -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
-    ${INPUT_REVIEWDOG_FLAGS}
+      -efm='%-P%f' \
+      -efm=' %#%l:%c-%[0-9]%#:%[0-9]%# %# %trror  %m' \
+      -efm=' %#%l:%c-%[0-9]%#:%[0-9]%# %# %tarning  %m' \
+      -efm='%-Q' \
+      -efm='%-G%.%#' \
+      -reporter="${INPUT_REPORTER:-github-pr-check}" \
+      -filter-mode="${INPUT_FILTER_MODE}" \
+      -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
+      -level="${INPUT_LEVEL}" \
+      ${INPUT_REVIEWDOG_FLAGS} \
+      -tee
