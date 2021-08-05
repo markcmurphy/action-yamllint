@@ -10,8 +10,6 @@ RUN wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/in
 
 RUN npm install -g @stoplight/spectral@6.0.0-alpha3
 
-RUN npx @stoplight/spectral@6.0.0-alpha3
-
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
