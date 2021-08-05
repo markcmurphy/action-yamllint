@@ -4,7 +4,7 @@ cd "$GITHUB_WORKSPACE" || exit
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-Spectral lint reference/*.yml -v -F=error --ruleset=https://raw.githubusercontent.com/bigcommerce/api-specs/master/.spectral.yaml \
+spectral lint reference/*.yml -v -F=error --ruleset=https://raw.githubusercontent.com/bigcommerce/api-specs/master/.spectral.yaml \
   | reviewdog \
     -efm="%f:%l:%c: %m" \
     -name "spectral" \
