@@ -8,6 +8,9 @@ inputs:
   level:
     description: 'Report level for reviewdog [info,warning,error]'
     default: 'error'
+  workdir:
+    description: 'Working directory relative to the root directory.'
+    default: '.'
   reporter:
     description: |
       Reporter of reviewdog command [github-pr-check,github-pr-review,github-check].
