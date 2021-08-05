@@ -1,21 +1,19 @@
-name: 'Run yamllint with reviewdog'
-description: '🐶 Run yamllint with reviewdog on pull requests to improve code review experience.'
-author: 'aslafy-z'
+name: 'check spectral'
+description: 'checks spectral'
+author: 'Mark Murphy'
 inputs:
   github_token:
-    description: 'GITHUB_TOKEN.'
+    description: 'GITHUB_TOKEN'
     default: '${{ github.token }}'
-  level:
-    description: 'Report level for reviewdog [info,warning,error]'
-    default: 'error'
   workdir:
     description: 'Working directory relative to the root directory.'
     default: '.'
+  ### Flags for reviewdog ###
+  level:
+    description: 'Report level for reviewdog [info,warning,error]'
+    default: 'error'
   reporter:
-    description: |
-      Reporter of reviewdog command [github-pr-check,github-pr-review,github-check].
-      Default is github-pr-check.
-      github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
+    description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
     default: 'github-pr-check'
   filter_mode:
     description: |
@@ -34,5 +32,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
 branding:
-  icon: 'alert-octagon'
+  icon: 'check'
   color: 'blue'
